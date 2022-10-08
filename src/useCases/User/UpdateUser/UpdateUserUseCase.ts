@@ -14,26 +14,11 @@ export default class UpdateUserUseCase {
 
   execute = async (
     user: User,
-    userFirstName: string,
-    userLastName: string,
+    name: string,
     email: string,
-    userPhone: string,
-    operation: number[],
-    fantasyName: string,
-    companyName: string,
-    CNPJ: string,
-    stateRegister: string,
-    CEP: string,
-    state: string,
-    city: string,
-    street: string,
-    addressNumber: string,
-    addressComplement: string,
-    facebookPixel: string,
     password: string,
     active: boolean,
-    anotherUser: string,
-    subDomain: string
+    anotherUser: string
   ) => {
     const user_id = user.admin && anotherUser ? anotherUser : user._id;
 
@@ -43,31 +28,7 @@ export default class UpdateUserUseCase {
       throw new Error('UpdateUserUseCase: new user email is invalid.');
     }
 
-    const isUserPhoneValid =
-      this.validatorService.validatePhoneNumber(userPhone);
-
-    if (userPhone && !isUserPhoneValid) {
-      throw new Error('UpdateUserUseCase: new user phone is invalid.');
-    }
-
-    const isCNPJValid = this.validatorService.validateCNPJ(CNPJ);
-    if (CNPJ && !isCNPJValid) {
-      throw new Error('UpdateUserUseCase: new user CNPJ is invalid.');
-    }
-
-    const isCEPValid = this.validatorService.validateCEP(CEP);
-
-    if (CEP && !isCEPValid) {
-      throw new Error('UpdateUserUseCase: new user CEP is invalid.');
-    }
-
     const oldUser = await this.userRepository.findByIdWithPassword(user_id);
-
-    const existSubDomain = await this.userRepository.findBySubDomain(subDomain);
-
-    if (subDomain && subDomain !== oldUser.subDomain && existSubDomain) {
-      throw new Error('UpdateUserUseCase: new user subDomain alredy exists.');
-    }
 
     const newPassword =
       password && password.trim().length > 0
@@ -77,23 +38,8 @@ export default class UpdateUserUseCase {
     const updatedUser = new User({
       ...oldUser,
       active: active ?? oldUser.active,
-      userFirstName: userFirstName || oldUser.userFirstName,
-      userLastName: userLastName || oldUser.userLastName,
+      name: name || oldUser.name,
       email: email || oldUser.email,
-      userPhone: userPhone || oldUser.userPhone,
-      operation: operation || oldUser.operation,
-      fantasyName: fantasyName || oldUser.fantasyName,
-      companyName: companyName || oldUser.companyName,
-      CNPJ: CNPJ || oldUser.CNPJ,
-      stateRegister: stateRegister || oldUser.stateRegister,
-      CEP: CEP || oldUser.CEP,
-      state: state || oldUser.state,
-      city: city || oldUser.city,
-      street: street || oldUser.street,
-      addressNumber: addressNumber || oldUser.addressNumber,
-      addressComplement: addressComplement || oldUser.addressComplement,
-      facebookPixel: facebookPixel || oldUser.facebookPixel,
-      subDomain: subDomain || oldUser.subDomain,
       password: newPassword,
     });
 

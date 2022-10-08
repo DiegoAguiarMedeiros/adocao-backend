@@ -25,7 +25,7 @@ export default class RecoverUserPasswordUseCase {
 
 
 
-    const { userFirstName } = user;
+    const { name } = user;
 
 
   };

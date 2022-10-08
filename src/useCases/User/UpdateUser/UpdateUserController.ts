@@ -8,50 +8,20 @@ export default class UpdateProductController {
     const { body, user, query } = req;
     const { userId: anotherUser } = query;
     const {
-      userFirstName,
-      userLastName,
+      name,
       email,
-      userPhone,
-      operation,
-      fantasyName,
-      companyName,
-      CNPJ,
-      stateRegister,
-      CEP,
-      state,
-      city,
-      street,
-      addressNumber,
-      addressComplement,
-      facebookPixel,
       password,
-      active,
-      subDomain,
+      active
     } = body;
 
     try {
       await this.updateUserUseCase.execute(
         user,
-        userFirstName,
-        userLastName,
+        name,
         email,
-        userPhone,
-        operation,
-        fantasyName,
-        companyName,
-        CNPJ,
-        stateRegister,
-        CEP,
-        state,
-        city,
-        street,
-        addressNumber,
-        addressComplement,
-        facebookPixel,
         password,
         active,
-        anotherUser,
-        subDomain
+        anotherUser
       );
       return res.sendStatus(200);
     } catch (err) {
