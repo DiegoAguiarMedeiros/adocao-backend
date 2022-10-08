@@ -1,7 +1,7 @@
 import MongoUserRepository from '../../repositories/implementations/MongoUserRepository';
 import ValidatorService from '../../services/implementations/ValidatorService';
-import ValidateEmailUseCase from './ValidateCompanyEmailUseCase';
-import ValidateEmailController from './ValidateCompanyEmailController';
+import ValidateEmailUseCase from './ValidateEmailUseCase';
+import ValidateEmailController from './ValidateEmailController';
 
 const mongoUserRepository = new MongoUserRepository();
 const validatorService = new ValidatorService();

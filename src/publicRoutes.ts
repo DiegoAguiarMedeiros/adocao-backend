@@ -19,7 +19,7 @@ router.get("/", (req, res) =>
 
 router.post("/adminuser", setAdminController.handle);
 
-router.post("/users", multer().single("file"), createUserController.handle);
+router.post("/users", createUserController.handle);
 router.put("/users/recoverPassword", recoverUserPasswordController.handle);
 
 router.post("/validate/email", validateEmailController.handle);

@@ -1,67 +1,13 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-  userFirstName: {
+  name: {
     type: String,
     required: true,
   },
-  userLastName: {
-    type: String,
-  },
-  userEmail: {
+  email: {
     type: String,
     required: true,
-  },
-  userPhone: {
-    type: String,
-    required: true,
-  },
-  subDomain: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  fantasyName: {
-    type: String,
-  },
-  companyName: {
-    type: String,
-    required: true,
-  },
-  CNPJ: {
-    type: String,
-  },
-  stateRegister: {
-    type: String,
-  },
-  CEP: {
-    type: String,
-  },
-  state: {
-    type: String,
-  },
-  city: {
-    type: String,
-  },
-  street: {
-    type: String,
-  },
-  addressNumber: {
-    type: String,
-  },
-  addressComplement: {
-    type: String,
-  },
-  operation: {
-    type: [Number],
-  },
-  facebookPixel: {
-    type: String,
-  },
-  companyEmail: {
-    type: String,
-    required: true,
-    unique: true,
   },
   password: {
     type: String,
@@ -74,10 +20,6 @@ const UserSchema = new mongoose.Schema({
   },
   logoUrl: {
     type: String,
-  },
-  highlightsCategory: {
-    type: mongoose.Types.ObjectId,
-    ref: 'Category',
   },
   lastLogin: {
     type: Date,

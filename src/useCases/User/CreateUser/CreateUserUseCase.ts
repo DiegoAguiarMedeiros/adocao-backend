@@ -16,79 +16,39 @@ export default class CreateUserUseCase {
   ) { }
 
   execute = async (
-    userFirstName: string,
-    userLastName: string,
-    userEmail: string,
-    userPhone: string,
-    companyEmail: string,
-    companyName: string,
-    subDomain: string,
-    CNPJ: string,
-    fileBuffer: Buffer,
-    fileMimetype: string
+    name: string,
+    email: string,
+    password: string
   ): Promise<void> => {
-    const companyEmailIsvalid =
-      this.validatorService.validateEmail(companyEmail);
-    const unMaskedCNPJ = unMask(CNPJ);
-    if (!companyEmailIsvalid) {
-      throw new Error('CreateUserUseCase: company email is not valid.');
-    }
-    const companyEmailAlreadyExists =
-      await this.userRepository.findByCompanyEmail(companyEmail);
 
-    if (companyEmailAlreadyExists) {
-      throw new Error('CreateUserUseCase: company email already exists.');
+    const EmailIsvalid =
+      this.validatorService.validateEmail(email);
+    if (!EmailIsvalid) {
+      throw new Error('CreateUserUseCase: email is not valid.');
     }
-
-    if (!userLastName || userLastName.length === 0) {
-      throw new Error('CreateUserUseCase: user last name is no valid.');
+    const EmailAlreadyExists =
+    await this.userRepository.findByEmail(email);
+    if (EmailAlreadyExists) {
+      throw new Error('CreateUserUseCase: email already exists.');
     }
 
-    const userEmailIsvalid = this.validatorService.validateEmail(userEmail);
+    if (!name || name.length === 0) {
+      throw new Error('CreateUserUseCase: user name is no valid.');
+    }
 
-    if (!userEmailIsvalid) {
+    const emailIsvalid = this.validatorService.validateEmail(email);
+
+    if (!emailIsvalid) {
       throw new Error('CreateUserUseCase: user email is not valid.');
     }
 
-    const userPhoneIsValid =
-      this.validatorService.validatePhoneNumber(userPhone);
 
-    if (!userPhoneIsValid) {
-      throw new Error('CreateUserUseCase: user phone is not valid.');
-    }
-
-    const subDomainAlreadyExists = await this.userRepository.findBySubDomain(
-      subDomain
-    );
-
-    if (subDomainAlreadyExists) {
-      throw new Error('CreateUserUseCase: sub domain already exists.');
-    }
-
-    const subDomainIsvalid = this.validatorService.validateSubDomain(subDomain);
-
-    if (!subDomainIsvalid) {
-      throw new Error('CreateUserUseCase: subDomain is not valid.');
-    }
-
-    const cnpjIsValid = this.validatorService.validateCNPJ(unMaskedCNPJ);
-
-    if (!cnpjIsValid) {
-      throw new Error('CreateUserUseCase: CNPJ is not valid.');
-    }
-
-    const passwordHash = "asd"
+    password = await this.cryptService.hash(password);
     const user = new User({
-      userFirstName,
-      userLastName,
-      userEmail,
-      userPhone,
-      companyName,
-      companyEmail,
-      subDomain,
-      password: passwordHash,
+      name,
+      email,
+      password,
       active: true,
-      CNPJ: unMaskedCNPJ,
       admin: false,
       numberAccess: 0,
     });

@@ -7,10 +7,10 @@ export default class RecoverUserPasswordController {
   ) {}
 
   handle = async (req: Request, res: Response): Promise<Response> => {
-    const { companyEmail } = req.body;
+    const { Email } = req.body;
 
     try {
-      await this.recoverUserPasswordUseCase.execute(companyEmail);
+      await this.recoverUserPasswordUseCase.execute(Email);
 
       return res.sendStatus(200);
     } catch (err) {

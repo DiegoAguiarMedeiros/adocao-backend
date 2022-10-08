@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
-import ValidateCompanyEmailUseCase from './ValidateCompanyEmailUseCase';
+import ValidateEmailUseCase from './ValidateEmailUseCase';
 
-export default class ValidateCompanyEmailController {
+export default class ValidateEmailController {
   constructor(
-    private validateCompanyEmailUseCase: ValidateCompanyEmailUseCase,
+    private validateEmailUseCase: ValidateEmailUseCase,
   ) {}
 
   handle = async (req: Request, res: Response): Promise<Response> => {
-    const { companyEmail } = req.body;
+    const { Email } = req.body;
 
     try {
-      const response = await this.validateCompanyEmailUseCase.execute(companyEmail);
+      const response = await this.validateEmailUseCase.execute(Email);
       return res.status(200).send(response);
     } catch (err) {
       return res.status(400).json({

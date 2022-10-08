@@ -2,36 +2,20 @@ import { Request, Response } from 'express';
 import CreateUserUseCase from './CreateUserUseCase';
 
 export default class CreateUserController {
-  constructor(private createUserUseCase: CreateUserUseCase) {}
+  constructor(private createUserUseCase: CreateUserUseCase) { }
 
   handle = async (req: Request, res: Response): Promise<Response> => {
     const { file, body } = req;
     const {
-      userFirstName,
-      userLastName,
-      userEmail,
-      userPhone,
-      companyEmail,
-      companyName,
-      subDomain,
-      CNPJ,
+      name,
+      email,
+      password,
     } = body;
-
-    const fileBuffer = file ? file.buffer : null;
-    const fileMimetype = file ? file.mimetype : null;
-
     try {
       await this.createUserUseCase.execute(
-        userFirstName,
-        userLastName,
-        userEmail,
-        userPhone,
-        companyEmail,
-        companyName,
-        subDomain,
-        CNPJ,
-        fileBuffer,
-        fileMimetype
+        name,
+        email,
+        password
       );
 
       return res.sendStatus(201);

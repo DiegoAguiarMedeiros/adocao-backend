@@ -13,15 +13,17 @@ export default class MongoUserRepository implements IUserRepository {
     );
     return findedUser ? new User(findedUser.toJSON()) : null;
   }
-  async findByCompanyEmailWithPassword(companyEmail: string): Promise<User> {
-    const findedUser = await UserModel.findOne({ companyEmail }).select(
+  async findByEmailWithPassword(email: string): Promise<User> {
+    console.log(email)
+    const findedUser = await UserModel.findOne({ email }).select(
       '+password'
-    );
+      );
+      console.log('findedUser',findedUser)
     return findedUser ? new User(findedUser.toJSON()) : null;
   }
 
-  async findByCompanyEmail(companyEmail: string): Promise<User> {
-    const findedUser = await UserModel.findOne({ companyEmail });
+  async findByEmail(email: string): Promise<User> {
+    const findedUser = await UserModel.findOne({ email });
     return findedUser ? new User(findedUser.toJSON()) : null;
   }
 
@@ -36,7 +38,7 @@ export default class MongoUserRepository implements IUserRepository {
   }
 
   async getAllUsers(): Promise<User[]> {
-    const allUsers = await UserModel.find().sort({ companyName: 'asc' });
+    const allUsers = await UserModel.find();
 
     return allUsers.map((document) => new User(document.toJSON()));
   }

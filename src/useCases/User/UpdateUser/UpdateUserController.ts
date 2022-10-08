@@ -10,7 +10,7 @@ export default class UpdateProductController {
     const {
       userFirstName,
       userLastName,
-      userEmail,
+      email,
       userPhone,
       operation,
       fantasyName,
@@ -34,7 +34,7 @@ export default class UpdateProductController {
         user,
         userFirstName,
         userLastName,
-        userEmail,
+        email,
         userPhone,
         operation,
         fantasyName,

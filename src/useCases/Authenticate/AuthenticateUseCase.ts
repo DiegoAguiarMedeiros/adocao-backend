@@ -13,10 +13,11 @@ export default class AuthenticateUseCase {
   ) {}
 
   execute = async (email: string, password: string) => {
-    const user = await this.userRepository.findByCompanyEmailWithPassword(
+    const user = await this.userRepository.findByEmailWithPassword(
       email
-    );
-
+      );
+      
+      console.log(email,password,user)
     if (!user) {
       throw new Error('AuthenticateUseCase: user not found.');
     }

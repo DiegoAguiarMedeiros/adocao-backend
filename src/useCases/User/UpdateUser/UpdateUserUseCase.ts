@@ -16,7 +16,7 @@ export default class UpdateUserUseCase {
     user: User,
     userFirstName: string,
     userLastName: string,
-    userEmail: string,
+    email: string,
     userPhone: string,
     operation: number[],
     fantasyName: string,
@@ -37,9 +37,9 @@ export default class UpdateUserUseCase {
   ) => {
     const user_id = user.admin && anotherUser ? anotherUser : user._id;
 
-    const isUserEmailValid = this.validatorService.validateEmail(userEmail);
+    const isemailValid = this.validatorService.validateEmail(email);
 
-    if (userEmail && !isUserEmailValid) {
+    if (email && !isemailValid) {
       throw new Error('UpdateUserUseCase: new user email is invalid.');
     }
 
@@ -79,7 +79,7 @@ export default class UpdateUserUseCase {
       active: active ?? oldUser.active,
       userFirstName: userFirstName || oldUser.userFirstName,
       userLastName: userLastName || oldUser.userLastName,
-      userEmail: userEmail || oldUser.userEmail,
+      email: email || oldUser.email,
       userPhone: userPhone || oldUser.userPhone,
       operation: operation || oldUser.operation,
       fantasyName: fantasyName || oldUser.fantasyName,

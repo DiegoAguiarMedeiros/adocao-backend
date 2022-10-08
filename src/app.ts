@@ -5,7 +5,6 @@ import 'dotenv/config';
 import bodyParser from 'body-parser';
 
 import initDB from './config/mongoConfig';
-import './config/awsConfig';
 
 import publicRoutes from './publicRoutes';
 // import privateRoutes from './privateRoutes';

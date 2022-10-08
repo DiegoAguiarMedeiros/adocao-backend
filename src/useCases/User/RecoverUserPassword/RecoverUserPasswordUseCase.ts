@@ -10,14 +10,14 @@ export default class RecoverUserPasswordUseCase {
     private validatorService: IValidatorService,
   ) {}
 
-  execute = async (companyEmail: string) => {
-    const isEmailValid = this.validatorService.validateEmail(companyEmail);
+  execute = async (Email: string) => {
+    const isEmailValid = this.validatorService.validateEmail(Email);
 
     if (!isEmailValid) {
       throw new Error('RecoverUserPasswordUseCase: invalid email.');
     }
 
-    const user = await this.userRepository.findByCompanyEmail(companyEmail);
+    const user = await this.userRepository.findByEmail(Email);
 
     if (!user) {
       throw new Error('RecoverUserPasswordUseCase: user not found.');
