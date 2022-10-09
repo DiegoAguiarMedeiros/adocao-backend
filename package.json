@@ -7,14 +7,14 @@
     "node": "14.18.1"
   },
   "scripts": {
-    "prestart": "npm run migrate:up",
+    "prestart": "npm run migrateup",
     "start": "node dist/app.js",
     "build": "tsc",
     "dev": "ts-node-dev --poll --respawn --transpile-only --ignore-watch node_modules --no-notify src/app.ts",
     "lint": "eslint --ext .ts,.js src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate:up": "migrate-mongo up",
-    "migrate:down": "migrate-mongo down"
+    "migrateup": "migrate-mongo up",
+    "migratedown": "migrate-mongo down"
   },
   "keywords": [],
   "author": "",
