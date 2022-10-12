@@ -12,13 +12,13 @@ export default class CreateUserController {
       password,
     } = body;
     try {
-      await this.createUserUseCase.execute(
+      const newUser = await this.createUserUseCase.execute(
         name,
         email,
         password
       );
 
-      return res.sendStatus(201);
+      return res.status(201).send(newUser);
     } catch (err) {
       console.log(err);
       return res.status(400).json({

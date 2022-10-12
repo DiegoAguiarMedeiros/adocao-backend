@@ -27,16 +27,6 @@ export default class MongoUserRepository implements IUserRepository {
     return findedUser ? new User(findedUser.toJSON()) : null;
   }
 
-  async findBySubDomain(subDomain: string): Promise<User> {
-    const findedUser = await UserModel.findOne({ subDomain });
-    return findedUser ? new User(findedUser.toJSON()) : null;
-  }
-
-  async findByCNPJ(cnpj: string) {
-    const findedUser = await UserModel.findOne({ CNPJ: cnpj });
-    return findedUser ? new User(findedUser.toJSON()) : null;
-  }
-
   async getAllUsers(): Promise<User[]> {
     const allUsers = await UserModel.find();
 
@@ -46,21 +36,6 @@ export default class MongoUserRepository implements IUserRepository {
   async save(category: any): Promise<any> {
     const newUser = await UserModel.create(category);
     return newUser.toJSON();
-  }
-
-  async defineUserHighlightscategory(
-    userId: string,
-    categoryId: string
-  ): Promise<User> {
-    const user: User = await UserModel.findOneAndUpdate(
-      { _id: userId },
-      {
-        $set: {
-          highlightsCategory: categoryId,
-        },
-      }
-    );
-    return user;
   }
 
   async update(userId: string, params: any): Promise<User> {
