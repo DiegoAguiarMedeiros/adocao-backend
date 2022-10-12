@@ -6,8 +6,6 @@ import createUserController from "./useCases/User/CreateUser";
 
 import authenticateController from "./useCases/Authenticate";
 
-import setAdminController from "./useCases/SetAdmin";
-
 import validateEmailController from "./useCases/ValidateEmail";
 import recoverUserPasswordController from "./useCases/User/RecoverUserPassword";
 
@@ -16,8 +14,6 @@ const router = Router();
 router.get("/", (req, res) =>
   res.json({ message: "Mytm api, access /docs for documentation." })
 );
-
-router.post("/adminuser", setAdminController.handle);
 
 router.post("/users", createUserController.handle);
 router.put("/users/recoverPassword", recoverUserPasswordController.handle);
