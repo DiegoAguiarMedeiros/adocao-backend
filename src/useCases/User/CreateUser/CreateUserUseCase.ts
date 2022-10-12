@@ -5,8 +5,6 @@ import { ICryptService } from '../../../services/ICryptService';
 import { IValidatorService } from '../../../services/IValidatorService';
 import User from '../../../entities/User';
 
-const HIGHLIGHTS_DEFAULT_NAME = 'Destaques';
-const PASSWORD_LENGTH = 8;
 
 export default class CreateUserUseCase {
   constructor(
@@ -19,7 +17,7 @@ export default class CreateUserUseCase {
     name: string,
     email: string,
     password: string
-  ): Promise<void> => {
+  ): Promise<User> => {
 
     const EmailIsvalid =
       this.validatorService.validateEmail(email);
@@ -42,7 +40,7 @@ export default class CreateUserUseCase {
       throw new Error('CreateUserUseCase: user email is not valid.');
     }
 
-
+    
     password = await this.cryptService.hash(password);
     const user = new User({
       name,
@@ -52,9 +50,10 @@ export default class CreateUserUseCase {
       admin: false,
       numberAccess: 0,
     });
-
+    
 
     const savedUser = await this.userRepository.save(user);
 
+    return savedUser;
   };
 }
