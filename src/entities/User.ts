@@ -16,13 +16,13 @@ export default class User {
 
   public password: string;
 
-  public house: number;
+  public house: string;
 
-  public houseSize: number;
+  public houseSize: string;
   
   public otherPets: boolean;
   
-  public timeInHouse: number;
+  public timeInHouse: string;
   
   public lastLogin?: Date = null;
 

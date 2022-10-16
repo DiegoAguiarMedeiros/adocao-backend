@@ -16,10 +16,10 @@ export default class CreateUserUseCase {
   execute = async (
     name: string,
     email: string,
-    house:number,
-    houseSize:number,
+    house:string,
+    houseSize:string,
     otherPets:boolean,
-    timeInHouse:number,
+    timeInHouse:string,
     password: string
   ): Promise<User> => {
 
