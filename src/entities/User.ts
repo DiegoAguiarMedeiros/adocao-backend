@@ -28,6 +28,8 @@ export default class User {
 
   public admin = false;
 
+  public registerCompleted = false;
+
   public numberAccess = 0;
 
   constructor(props: User) {

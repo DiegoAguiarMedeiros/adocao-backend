@@ -14,6 +14,22 @@ const UserSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
+  house: {
+    type: Number,
+    required: true,
+  },
+  houseSize: {
+    type: Number,
+    required: true,
+  },
+  otherPets: {
+    type: Boolean,
+    required: true,
+  },
+  timeInHouse: {
+    type: Number,
+    required: true,
+  },
   active: {
     type: Boolean,
     required: true,
@@ -36,6 +52,10 @@ const UserSchema = new mongoose.Schema({
   },
   numberAccess: {
     type: Number,
+    required: true,
+  },
+  registerCompleted: {
+    type: Boolean,
     required: true,
   },
 });

@@ -56,6 +56,7 @@ export default class CreateUserUseCase {
       timeInHouse,
       active: true,
       admin: false,
+      registerCompleted: false,
       numberAccess: 0,
     });
 
