@@ -9,12 +9,20 @@ export default class CreateUserController {
     const {
       name,
       email,
+      house,
+      houseSize,
+      otherPets,
+      timeInHouse,
       password,
     } = body;
     try {
       const newUser = await this.createUserUseCase.execute(
         name,
         email,
+        house,
+        houseSize,
+        otherPets,
+        timeInHouse,
         password
       );
 

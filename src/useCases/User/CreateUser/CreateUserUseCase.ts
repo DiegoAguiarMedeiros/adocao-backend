@@ -16,6 +16,10 @@ export default class CreateUserUseCase {
   execute = async (
     name: string,
     email: string,
+    house:number,
+    houseSize:number,
+    otherPets:boolean,
+    timeInHouse:number,
     password: string
   ): Promise<User> => {
 
@@ -25,7 +29,7 @@ export default class CreateUserUseCase {
       throw new Error('CreateUserUseCase: email is not valid.');
     }
     const EmailAlreadyExists =
-    await this.userRepository.findByEmail(email);
+      await this.userRepository.findByEmail(email);
     if (EmailAlreadyExists) {
       throw new Error('CreateUserUseCase: email already exists.');
     }
@@ -40,17 +44,21 @@ export default class CreateUserUseCase {
       throw new Error('CreateUserUseCase: user email is not valid.');
     }
 
-    
+
     password = await this.cryptService.hash(password);
     const user = new User({
       name,
       email,
       password,
+      house,
+      houseSize,
+      otherPets,
+      timeInHouse,
       active: true,
       admin: false,
       numberAccess: 0,
     });
-    
+
 
     const savedUser = await this.userRepository.save(user);
 

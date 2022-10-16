@@ -16,6 +16,14 @@ export default class User {
 
   public password: string;
 
+  public house: number;
+
+  public houseSize: number;
+  
+  public otherPets: boolean;
+  
+  public timeInHouse: number;
+  
   public lastLogin?: Date = null;
 
   public admin = false;
