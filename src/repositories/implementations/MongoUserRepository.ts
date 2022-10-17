@@ -14,11 +14,9 @@ export default class MongoUserRepository implements IUserRepository {
     return findedUser ? new User(findedUser.toJSON()) : null;
   }
   async findByEmailWithPassword(email: string): Promise<User> {
-    console.log(email)
     const findedUser = await UserModel.findOne({ email }).select(
       '+password'
       );
-      console.log('findedUser',findedUser)
     return findedUser ? new User(findedUser.toJSON()) : null;
   }
 

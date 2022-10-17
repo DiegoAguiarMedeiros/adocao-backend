@@ -20,12 +20,6 @@ export default class UpdateUserUseCase {
     timeInHouse: string,
   ) => {
 
-    console.log('user',userId)
-    console.log('house',house)
-    console.log('houseSize',houseSize)
-    console.log('otherPets',otherPets)
-    console.log('timeInHouse',timeInHouse)
-
     if (house !== 'Casa' && house !== 'Apê') {
       throw new Error('UpdateUserComplementUseCase: house is invalid.');
     }

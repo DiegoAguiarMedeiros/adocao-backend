@@ -16,19 +16,19 @@ const UserSchema = new mongoose.Schema({
   },
   house: {
     type: String,
-    required: true,
+    required: false,
   },
   houseSize: {
     type: String,
-    required: true,
+    required: false,
   },
   otherPets: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   timeInHouse: {
     type: String,
-    required: true,
+    required: false,
   },
   active: {
     type: Boolean,

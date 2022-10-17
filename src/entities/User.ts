@@ -40,8 +40,6 @@ export default class User {
       _id,
     } = props;
 
-    console.log('3',name)
-
 
     if (!name || name.length === 0) {
       throw new Error('User: user name is invalid.');

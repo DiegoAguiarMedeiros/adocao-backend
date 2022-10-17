@@ -5,7 +5,7 @@ export default class CreateUserController {
   constructor(private createUserUseCase: CreateUserUseCase) { }
 
   handle = async (req: Request, res: Response): Promise<Response> => {
-    const { file, body } = req;
+    const { body } = req;
     const {
       name,
       email,
@@ -15,6 +15,7 @@ export default class CreateUserController {
       timeInHouse,
       password,
     } = body;
+
     try {
       const newUser = await this.createUserUseCase.execute(
         name,
