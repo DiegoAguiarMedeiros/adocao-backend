@@ -15,11 +15,11 @@ const UserSchema = new mongoose.Schema({
     select: false,
   },
   house: {
-    type: Number,
+    type: String,
     required: true,
   },
   houseSize: {
-    type: Number,
+    type: String,
     required: true,
   },
   otherPets: {
@@ -27,7 +27,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   timeInHouse: {
-    type: Number,
+    type: String,
     required: true,
   },
   active: {
