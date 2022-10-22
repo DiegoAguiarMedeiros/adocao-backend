@@ -3,6 +3,7 @@ import swaggerUi from "swagger-ui-express";
 import multer from "multer";
 
 import createUserController from "./useCases/User/CreateUser";
+import createCompanyController from "./useCases/Company/CreateCompany";
 
 import authenticateController from "./useCases/Authenticate";
 
@@ -17,6 +18,8 @@ router.get("/", (req, res) =>
 
 router.post("/users", createUserController.handle);
 router.put("/users/recoverPassword", recoverUserPasswordController.handle);
+
+router.post("/company", createCompanyController.handle);
 
 router.post("/validate/email", validateEmailController.handle);
 
