@@ -1,12 +1,12 @@
 import { Response } from 'express';
-import UpdateUserUseCase from './UpdateCompanyUseCase';
+import UpdateCompanyUseCase from './UpdateCompanyUseCase';
 
 export default class UpdateProductController {
-  constructor(private updateUserUseCase: UpdateUserUseCase) {}
+  constructor(private updateCompanyUseCase: UpdateCompanyUseCase) {}
 
   handle = async (req: any, res: Response): Promise<Response> => {
-    const { body, user, query } = req;
-    const { companyId: anotherUser } = query;
+    const { body, company, query } = req;
+    const { companyId: anotherCompany } = query;
     const {
       name,
       email,
@@ -15,13 +15,13 @@ export default class UpdateProductController {
     } = body;
 
     try {
-      await this.updateUserUseCase.execute(
-        user,
+      await this.updateCompanyUseCase.execute(
+        company,
         name,
         email,
         password,
         active,
-        anotherUser
+        anotherCompany
       );
       return res.sendStatus(200);
     } catch (err) {

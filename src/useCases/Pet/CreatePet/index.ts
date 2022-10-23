@@ -1,21 +1,14 @@
-import BCryptService from '../../../services/implementations/BCryptService';
-import ValidatorService from '../../../services/implementations/ValidatorService';
-import MongoUserRepository from '../../../repositories/implementations/MongoUserRepository';
+import MongoPetRepository from '../../../repositories/implementations/MongoPetRepository';
 
-import CreateUserUseCase from './CreateUserUseCase';
-import CreateUserController from './CreateUserController';
+import CreatePetUseCase from './CreatePetUseCase';
+import CreatePetController from './CreatePetController';
 
-const mongoUserRepository = new MongoUserRepository();
+const mongoPetRepository = new MongoPetRepository();
 
-const bcryptService = new BCryptService();
-const validatorService = new ValidatorService();
-
-const createUserUseCase = new CreateUserUseCase(
-  mongoUserRepository,
-  bcryptService,
-  validatorService,
+const createPetUseCase = new CreatePetUseCase(
+  mongoPetRepository
 );
 
-const createUserController = new CreateUserController(createUserUseCase);
+const createPetController = new CreatePetController(createPetUseCase);
 
-export default createUserController;
+export default createPetController;
