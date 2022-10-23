@@ -3,12 +3,12 @@ import Company from '../../entities/Company';
 import CompanyModel from '../models/CompanyModel';
 
 export default class MongoCompanyRepository implements ICompanyRepository {
-  async findById(CompanyId: string): Promise<Company> {
-    const findedCompany = await CompanyModel.findOne({ _id: CompanyId });
+  async findById(companyId: string): Promise<Company> {
+    const findedCompany = await CompanyModel.findOne({ _id: companyId });
     return findedCompany ? new Company(findedCompany.toJSON()) : null;
   }
-  async findByIdWithPassword(CompanyId: string) {
-    const findedCompany = await CompanyModel.findOne({ _id: CompanyId }).select(
+  async findByIdWithPassword(companyId: string) {
+    const findedCompany = await CompanyModel.findOne({ _id: companyId }).select(
       '+password'
     );
     return findedCompany ? new Company(findedCompany.toJSON()) : null;

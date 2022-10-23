@@ -5,7 +5,8 @@ import multer from "multer";
 import createUserController from "./useCases/User/CreateUser";
 import createCompanyController from "./useCases/Company/CreateCompany";
 
-import authenticateController from "./useCases/Authenticate";
+import authenticateUserController from "./useCases/AuthenticateUser";
+import authenticateCompanyController from "./useCases/AuthenticateCompany";
 
 import validateEmailController from "./useCases/ValidateEmail";
 import recoverUserPasswordController from "./useCases/User/RecoverUserPassword";
@@ -23,7 +24,8 @@ router.post("/company", createCompanyController.handle);
 
 router.post("/validate/email", validateEmailController.handle);
 
-router.post("/auth", authenticateController.handle);
+router.post("/usersAuth", authenticateUserController.handle);
+router.post("/companyAuth", authenticateCompanyController.handle);
 
 router.use("/docs", swaggerUi.serve);
 

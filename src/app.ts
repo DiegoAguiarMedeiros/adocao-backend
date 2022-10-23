@@ -7,7 +7,8 @@ import bodyParser from 'body-parser';
 import initDB from './config/mongoConfig';
 
 import publicRoutes from './publicRoutes';
-import privateRoutes from './privateRoutes';
+import privateUserRoutes from './privateUserRoutes';
+import privateCompanyRoutes from './privateCompanyRoutes';
 // import menuRoutes from './menuRoutes';
 
 import logger from './config/logger';
@@ -43,7 +44,8 @@ app.use(publicRoutes);
 
 // app.use(menuRoutes);
 
-app.use(privateRoutes);
+app.use(privateUserRoutes);
+app.use(privateCompanyRoutes);
 
 const port = process.env.PORT || 3001;
 

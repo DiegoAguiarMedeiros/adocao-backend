@@ -6,7 +6,7 @@ export default class UpdateProductController {
 
   handle = async (req: any, res: Response): Promise<Response> => {
     const { body, user, query } = req;
-    const { userId: anotherUser } = query;
+    const { companyId: anotherUser } = query;
     const {
       name,
       email,
@@ -20,7 +20,8 @@ export default class UpdateProductController {
         name,
         email,
         password,
-        active
+        active,
+        anotherUser
       );
       return res.sendStatus(200);
     } catch (err) {
