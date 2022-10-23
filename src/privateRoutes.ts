@@ -7,12 +7,12 @@ import updateUserNumberAcessController from './useCases/User/UpdateUserNumberAce
 import getUserController from './useCases/User/GetUser';
 import getAllUsersController from './useCases/User/GetAllUsers';
 
-// import isPaid from './middleware/IsPaid';
+import isAuthenticated from './middleware/IsAuthenticated';
 
 const router = Router();
 
 
-// router.use(isPaid.handle);
+router.use(isAuthenticated.handle);
 
 router.put('/usersComplement', updateUserComplementController.handle);
 router.put('/users', updateUserController.handle);
