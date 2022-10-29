@@ -18,8 +18,8 @@ const router = Router();
 router.put('/company', isAuthenticated.handle, updateCompanyController.handle);
 router.post('/company/pet', isAuthenticated.handle, createPetController.handle);
 router.post('/company/pet/img', isAuthenticated.handle, multer().single('file'), uploadPictureProdutController.handle);
-router.post('/company/pet/getAll', isAuthenticatedUser.handle, GetAllPet.handle);
-router.post('/company/pet/getOnePet', isAuthenticatedUser.handle, GetOnePet.handle);
+router.get('/company/pet/getAll', isAuthenticatedUser.handle, GetAllPet.handle);
+router.get('/company/pet/getOnePet', isAuthenticatedUser.handle, GetOnePet.handle);
 
 
 export default router;
