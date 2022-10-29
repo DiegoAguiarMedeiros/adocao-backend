@@ -7,7 +7,7 @@ export default class MongoPetRepository implements IPetRepository {
     const findedPet = await PetModel.findOne({ _id: petId });
     return findedPet ? new Pet(findedPet.toJSON()) : null;
   }
-  async getAll(): Promise<Pet[]> {
+  async getAll(user_id: string): Promise<Pet[]> {
     const allPets = await PetModel.find();
 
     return allPets.map((document) => new Pet(document.toJSON()));

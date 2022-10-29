@@ -43,7 +43,6 @@ export default class UploadPicturePetUseCase {
         updatedPet.imgs.push(String(imagesURL));
       }
     }
-    console.log('updatedPet', updatedPet)
     await this.petsRepository.update(petId, { ...updatedPet });
   };
 }
