@@ -25,9 +25,7 @@ const PetSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  imgs: {
-    type: String,
-  },
+  imgs: [String],
   company: {
     type: mongoose.Types.ObjectId,
     required: true,

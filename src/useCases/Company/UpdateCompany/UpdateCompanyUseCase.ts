@@ -20,7 +20,6 @@ export default class UpdateCompanyUseCase {
     active: boolean,
     anotherUser
   ) => {
-    console.log(anotherUser)
     const Company_id = anotherUser ? anotherUser : company._id;
 
     const isemailValid = this.validatorService.validateEmail(email);

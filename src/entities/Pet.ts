@@ -5,7 +5,7 @@ enum Operations {
 }
 
 export default class Pet {
-  // TODO mudar _id para id
+
   public _id?: string;
 
   public name: string;
@@ -18,14 +18,13 @@ export default class Pet {
 
   public sociable: boolean;
 
-  public imgs?: string;
+  public imgs?: any[];
 
   public active: boolean;
 
   public company: string;
 
   constructor(props: Pet) {
-    console.log('props',props)
     const {
       company,
       name,
@@ -49,8 +48,6 @@ export default class Pet {
     if (!description || description.length === 0) {
       throw new Error('Pet: pet description is invalid.');
     }
-    console.log('size',size)
-    console.log('teste', !size || size.length === 0 || (size !== 'small' && size !== 'medium' && size !== 'big'))
     if (!size || size.length === 0 || (size !== 'small' && size !== 'medium' && size !== 'big')) {
       throw new Error('Pet: pet size is invalid. must be (small, medium or big)');
     }
