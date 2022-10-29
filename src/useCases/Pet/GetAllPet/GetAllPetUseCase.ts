@@ -1,17 +1,28 @@
 import { IPetRepository } from '../../../repositories/IPetRepository';
-import Pet from '../../../entities/Pet';
+import { IUserAcceptPetRepository } from '../../../repositories/IUserAcceptPetRepository';
+import { IUserNotAcceptPetRepository } from '../../../repositories/IUserNotAcceptPetRepository';
 
 export default class CreatePetUseCase {
-  constructor(private petsRepository: IPetRepository) { }
+  constructor(private petsRepository: IPetRepository, private userNotAcceptPetRepository: IUserNotAcceptPetRepository, private userAcceptPetRepository: IUserAcceptPetRepository) { }
 
   execute = async (
-    userId: string,
-    userAdmin: boolean,
-    anotherUser: string
+    userId: string
   ): Promise<any[]> => {
+
+
+    const petNotAccepts = await this.userNotAcceptPetRepository.getAllUser(userId);
+    const petAccepts = await this.userAcceptPetRepository.getAllUser(userId);
+
     const user_id = userId;
     const pets = await this.petsRepository.getAll(user_id);
-    const formattedPets = pets.map((pet) => ({
+
+    const petFilteredWithoutpetNotAccepts = pets.filter((pet) => petNotAccepts.includes(pet._id!))
+    const petFilteredWithoutpetNotAcceptsAndAccepts = pets.filter((pet) => petAccepts.includes(pet._id!))
+
+    console.log('petFilteredWithoutpetNotAcceptsAndAccepts', petFilteredWithoutpetNotAcceptsAndAccepts)
+
+
+    const formattedPets = petFilteredWithoutpetNotAcceptsAndAccepts.map((pet) => ({
       ...pet,
     }));
 

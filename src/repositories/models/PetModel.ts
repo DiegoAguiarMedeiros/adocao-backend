@@ -38,6 +38,6 @@ const PetSchema = new mongoose.Schema({
 
 });
 
-const User = mongoose.model<any>('Pet', PetSchema);
+const Pet = mongoose.model<any>('Pet', PetSchema);
 
-export default User;
+export default Pet;

@@ -1,9 +1,3 @@
-enum Operations {
-  PRESENTIAL = 0,
-  DELIVERY = 1,
-  TAKEAWAY = 2,
-}
-
 export default class User {
   // TODO mudar _id para id
   public _id?: string;
@@ -56,5 +50,3 @@ export default class User {
     Object.assign(this, props);
   }
 }
-
-export { Operations };
