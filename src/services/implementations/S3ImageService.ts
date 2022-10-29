@@ -41,13 +41,12 @@ const uploadProfilePicture = async (img: any): Promise<any> => {
 // }
 export default class S3ImageService implements IImageService {
   async saveImage(imageBuffer: Buffer, fileMimetype: string, petId: string): Promise<string> {
-    const imageType = fileMimetype.split("/")[1];
 
     const urlCloudinary = await uploadProfilePicture(imageBuffer);
 
     console.log('urlCloudinary', urlCloudinary)
 
-    return urlCloudinary.secure_url;
+    return urlCloudinary.url;
   }
 
   async deleteImage(fileName: string): Promise<any> {
