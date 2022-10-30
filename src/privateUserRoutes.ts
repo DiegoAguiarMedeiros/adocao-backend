@@ -8,6 +8,7 @@ import getUserController from './useCases/User/GetUser';
 import getAllUsersController from './useCases/User/GetAllUsers';
 import CreateUserNotAcceptPetController from './useCases/UserNotAcceptPet/CreateUserNotAcceptPet';
 import CreateUserAcceptPetController from './useCases/UserAcceptPet/CreateUserAcceptPet';
+import GetAll from './useCases/UserAcceptPet/GetAll';
 
 import isAuthenticated from './middleware/IsAuthenticatedUser';
 
@@ -20,6 +21,7 @@ router.get('/users', isAuthenticated.handle, getUserController.handle);
 router.get('/users/all', isAuthenticated.handle, getAllUsersController.handle);
 router.post('/userNotAcceptPet', isAuthenticated.handle, CreateUserNotAcceptPetController.handle);
 router.post('/userAcceptPet', isAuthenticated.handle, CreateUserAcceptPetController.handle);
+router.post('/getAllAcceptPets', isAuthenticated.handle, GetAll.handle);
 
 
 export default router;

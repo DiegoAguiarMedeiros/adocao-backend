@@ -31,8 +31,8 @@ export default class MongoCompanyRepository implements ICompanyRepository {
     return allCompanys.map((document) => new Company(document.toJSON()));
   }
 
-  async save(category: any): Promise<any> {
-    const newCompany = await CompanyModel.create(category);
+  async save(company: any): Promise<any> {
+    const newCompany = await CompanyModel.create(company);
     return newCompany.toJSON();
   }
 
