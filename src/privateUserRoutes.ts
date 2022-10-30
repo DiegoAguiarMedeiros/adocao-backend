@@ -21,7 +21,7 @@ router.get('/users', isAuthenticated.handle, getUserController.handle);
 router.get('/users/all', isAuthenticated.handle, getAllUsersController.handle);
 router.post('/userNotAcceptPet', isAuthenticated.handle, CreateUserNotAcceptPetController.handle);
 router.post('/userAcceptPet', isAuthenticated.handle, CreateUserAcceptPetController.handle);
-router.post('/getAllAcceptPets', isAuthenticated.handle, GetAll.handle);
+router.get('/getAllAcceptPets', isAuthenticated.handle, GetAll.handle);
 
 
 export default router;
