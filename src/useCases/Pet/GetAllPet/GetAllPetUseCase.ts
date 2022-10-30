@@ -16,8 +16,8 @@ export default class CreatePetUseCase {
     const user_id = userId;
     const pets = await this.petsRepository.getAll(user_id);
 
-    const petFilteredWithoutpetNotAccepts = pets.filter((pet) => petNotAccepts.includes(pet._id!))
-    const petFilteredWithoutpetNotAcceptsAndAccepts = petFilteredWithoutpetNotAccepts.filter((pet) => petAccepts.includes(pet._id!))
+    const petFilteredWithoutpetNotAccepts = pets.filter((pet) => !petNotAccepts.includes(pet._id!))
+    const petFilteredWithoutpetNotAcceptsAndAccepts = petFilteredWithoutpetNotAccepts.filter((pet) => !petAccepts.includes(pet._id!))
 
     console.log('petNotAccepts', petNotAccepts)
     console.log('petAccepts', petAccepts)
